@@ -1,0 +1,18 @@
+{
+  "name": "whatsappagent",
+  "version": "1.0.0",
+  "description": "Made with JS, langchain, and what's app api to implement a chatbot on whatsapp.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@langchain/core": "^0.3.43",
+    "@langchain/langgraph": "^0.2.62",
+    "@langchain/mistralai": "^0.2.0",
+    "dotenv": "^16.4.7"
+  }
+}
