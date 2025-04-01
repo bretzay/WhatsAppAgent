@@ -1,8 +1,52 @@
-const { createReactAgent } = require("@langchain/langgraph/prebuilt")
-const { ChatMistralAI } = require("@langchain/mistralai")
-const { tool } = require("@langchain/core/tools")
+const { createReactAgent } = require("@langchain/langgraph/prebuilt");
+const { ChatMistralAI } = require("@langchain/mistralai");
+const { tool } = require("@langchain/core/tools");
+
+
+const axios = require("axios");
+const { configDotenv } = require("dotenv");
 require("dotenv").config();
 
+// Connexion à WHATSAPP
+async function sendTemplateMessage()
+{
+    const response = await axios({
+        url: "https://graph.facebook.com/v22.0/629865740205319/messages",
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${process.env.FACEBOOK_ACCESS_TOKEN}`,
+            "Content-Type":  "application/json"
+        },
+        data: JSON.stringify({
+            messaging_product: "whatsapp",
+            to: "33770248607",
+            type: "template",
+            template: {
+                name: "hello_world",
+                language: {
+                    code: "en_US"
+                }
+            }
+        })
+        
+    })
+    console.log(response.data);
+}
+// Continue 16:00 : https://www.youtube.com/watch?v=4cvQxqFZTIQ
+sendTemplateMessage();
+
+/*
+function httpGet(URL)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", URL);
+    xmlHttp.send(null);
+    return xmlHttp.responseText;
+}
+
+console.log(httpGet("localhost:8000/api"));
+*/
+/*
 const fausseAddition = tool(async({query}) => {
     if (query = "69"){
         return "tu as de drôles d'idées"
@@ -33,3 +77,4 @@ async function newFunction(){
 }
 
 newFunction();
+*/
